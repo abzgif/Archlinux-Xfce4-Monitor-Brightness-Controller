@@ -2,14 +2,12 @@
 
 A lightweight, minimal, and dependency-aware brightness panel utility designed specifically for **XFCE4** desktop users. This script interfaces directly with desktop monitors using hardware **DDC/CI** communication via `ddcutil`, providing a live percentage readout on your top bar and an interactive, clean GTK slider window upon clicking.
 
-Designed to visually unify with system meters (like network speed plugins) by using sharp typography and clean system iconography.
-
 ---
 
 ## ⚡ Features
 
 * 📟 **Live Hardware Status:** Queries your external monitor's VCP memory directly for accurate backlighting reads.
-* 🖥️ **Sleek Unified UI:** Styled in bold black text (`Cascadia Code`) matching high-visibility system readouts.
+* 🖥️ **Sleek Unified UI:** Styled in bold text matching high-visibility system readouts.
 * 🎛️ **Pop-up GTK Slider:** Clicking the panel metric reveals an elegant, mouse-centered brightness slider using `yad`.
 * 🔋 **Ultra Lightweight:** Uses `ddcutil`'s raw/terse `-t` data mode to bypass heavy text processing and conserve system loops.
 
@@ -47,22 +45,24 @@ KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
 Save and apply the rules:
 ```bash
 sudo udevadm control --reload-rules && sudo udevadm trigger
+```
+```bash
 sudo usermod -aG i2c $USER
 ```
-> ⚠️ **Important:** Log out of your XFCE desktop environment session and log back in to finalize user security clearances.
+⚠️ **Important:** Log out of your XFCE desktop environment session and log back in to finalize user security clearances.
 
 ---
 
 ## 🚀 Setup & Script Configuration
 
-1. Create a directory to safely house your local scripts:
+1. Download the script file from this repo's **Releases** tab:
    ```bash
-   mkdir -p ~/.local/bin
-   nano ~/.local/bin/monitor_brightness.sh
+   monitor_brightness.sh
    ```
-2. Paste your stable, refined script block inside and mark it executable:
+2. Put the script file in your local binary path:
+   Enable show hidden files and create the folders then put the script file there
    ```bash
-   chmod +x ~/.local/bin/monitor_brightness.sh
+   /home/YOUR_USERNAME/.local/bin/monitor_brightness.sh
    ```
 
 ### 🛠️ Add to the XFCE Top Panel
@@ -72,16 +72,10 @@ sudo usermod -aG i2c $USER
 4. Configure it precisely as follows:
    * **Command:** `/home/YOUR_USERNAME/.local/bin/monitor_brightness.sh` *(Make sure to replace with your actual directory path)*
    * **Label:** *Uncheck* (Keep this blank for the minimalist look)
-   * **Period (s):** Set to `2.00` (or `1.00`)
+   * **Period (s):** Set to `3.00`
 5. Click Close.
 
 ---
-
-## 🎨 Layout Preview Configuration
-The layout generates a clean interface node natively matched to look consistent with tracking parameters:
-```xml
-<txt><span font='Cascadia Code 10' weight='bold' color='#000000'>󰃠 10%</span></txt>
-```
 
 ## 📄 License
 This utility is open-sourced under the MIT License. Feel free to copy, modify, and distribute!
